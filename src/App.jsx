@@ -9,23 +9,9 @@ function App() {
 
   function toggle(id) {
     setAllSquare((prevState) => {
-      const newSquares = [];
-
-      for (let i = 0; i < prevState.length; i++) {
-        const currentSquare = prevState[i];
-
-        if (id === currentSquare.id) {
-          const updateSquare = {
-            ...currentSquare,
-            on: !currentSquare.on,
-          };
-          newSquares.push(updateSquare);
-        } else {
-          newSquares.push(currentSquare);
-        }
-      }
-
-      return newSquares;
+      return prevState.map((square) => {
+        return square.id === id ? { ...square, on: !square.on } : square;
+      });
     });
   }
 
